@@ -13,10 +13,16 @@ document.getElementById('add').addEventListener('click', function () {
     }
 });
 
+// remove item
 function removeItem() {
     let listItem = this.parentNode.parentNode; // "listItem" is the parent of "buttons", which is the parent of "remove" button
     let list = listItem.parentNode; // to do list
     list.removeChild(listItem);
+}
+
+// complete item
+function completeItem() {
+
 }
 
 // add new item to the to do list
@@ -43,6 +49,9 @@ function addItemTodo(text) {
     let complete = document.createElement('button');
     complete.classList.add('complete');
     complete.innerHTML = completeSVG;
+
+    // Add click event for completing list items
+    complete.addEventListener('click', completeItem);
 
     // relate variables with each other
     list.insertBefore(listItem, list.childNodes[0]);
