@@ -35,7 +35,7 @@ function addItemTodo(text) {
     complete.innerHTML = completeSVG;
 
     // relate variables with each other
-    list.appendChild(item);
+    list.insertBefore(item, list.childNodes[0]);
     item.appendChild(buttons);
     buttons.appendChild(remove);
     buttons.appendChild(complete);
