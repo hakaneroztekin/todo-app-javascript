@@ -13,9 +13,15 @@ document.getElementById('add').addEventListener('click', function () {
     }
 });
 
+function removeItem() {
+    let listItem = this.parentNode.parentNode; // "listItem" is the parent of "buttons", which is the parent of "remove" button
+    let list = listItem.parentNode; // to do list
+    list.removeChild(listItem);
+}
+
 // add new item to the to do list
 function addItemTodo(text) {
-    var list = document.getElementById('todo');
+    let list = document.getElementById('todo');
 
     // <li>
     let listItem = document.createElement('li');
@@ -29,6 +35,9 @@ function addItemTodo(text) {
     let remove = document.createElement('button');
     remove.classList.add('remove');
     remove.innerHTML = removeSVG;
+
+    // Add click event for removing item
+    remove.addEventListener('click', removeItem);
 
     // <button class="complete">
     let complete = document.createElement('button');
