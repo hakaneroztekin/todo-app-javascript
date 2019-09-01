@@ -6,9 +6,10 @@ let completeSVG = '<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:x
 
 // user clicks on the add button
 document.getElementById('add').addEventListener('click', function () {
-    let value = document.getElementById('item').value;
-    if(value) {
-        addItemTodo(value);
+    let item = document.getElementById('item');
+    if(item.value) {
+        addItemTodo(item.value);
+        item.value = '';
     }
 });
 
@@ -17,8 +18,8 @@ function addItemTodo(text) {
     var list = document.getElementById('todo');
 
     // <li>
-    let item = document.createElement('li');
-    item.innerText = text;
+    let listItem = document.createElement('li');
+    listItem.innerText = text;
 
     // <div class="buttons">
     let buttons = document.createElement('div');
@@ -35,8 +36,8 @@ function addItemTodo(text) {
     complete.innerHTML = completeSVG;
 
     // relate variables with each other
-    list.insertBefore(item, list.childNodes[0]);
-    item.appendChild(buttons);
+    list.insertBefore(listItem, list.childNodes[0]);
+    listItem.appendChild(buttons);
     buttons.appendChild(remove);
     buttons.appendChild(complete);
 }
