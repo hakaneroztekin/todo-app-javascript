@@ -211,4 +211,7 @@ ul.todo li .buttons button.complete:hover svg .fill {
     fill: #25b99a;
 }
 
+ul.todo#completed:not(:empty) {
+    opacity: 0.5;
+}
 
