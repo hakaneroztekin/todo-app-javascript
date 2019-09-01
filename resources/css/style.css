@@ -145,7 +145,7 @@ ul.todo li .buttons button {
     -moz-appearance: none;
 }
 
-ul.todo li .buttons button:last-of-type {
+ul.todo li .buttons button:last-of-type:before {
     content: '';
     width: 1px;
     height: 30px;
@@ -165,6 +165,11 @@ ul.todo li .buttons button svg {
     margin: -11px 0 0 -11px;
 }
 
+ul.todo li .buttons button.complete svg {
+    border-radius: 11px;
+    border: 1.5px solid #25b99a;
+}
+
 ul.todo li .buttons button svg .fill {
     transition: 0.2s ease;
 }
@@ -175,6 +180,14 @@ ul.todo li .buttons button.remove svg .fill {
 
 ul.todo li .buttons button.remove:hover svg .fill {
     fill: red;
+}
+
+ul.todo li .buttons button.complete svg .fill {
+    fill: #25b99a;
+}
+
+ul.todo li .buttons button.complete:hover svg .fill {
+    fill: #25b99a;
 }
 
 
