@@ -1,8 +1,8 @@
 @charset "UTF-8";
 
-body{
- background: #edf0f1;
- padding-top: 100px;
+body {
+    background: #edf0f1;
+    padding: 80px 0 0 0;
 }
 
 body, input, button {
@@ -12,11 +12,13 @@ body, input, button {
 header {
     width: 100%;
     height: 80px;
+
     position: fixed;
     padding: 15px;
     top: 0;
     left: 0;
     z-index: 5;
+
     background: #25b99a;
     box-shadow: 0 2px 4px rgba(44, 62, 80, 0.15);
     border-bottom-left-radius: 10px;
@@ -42,34 +44,38 @@ header input {
 header input::-webkit-input-placeholder,
 header input:-moz-placeholder,
 header input::-moz-placeholder,
-header input::-ms-input-placeholder
-{
+header input::-ms-input-placeholder {
     color: rgba(255, 255, 255, 0.75)
 }
 
 header button {
     width: 50px;
     height: 50px;
+
     position: absolute;
     top: 15px;
     right: 15px;
     z-index: 2;
+
     border-radius: 25px;
     background: #ffffff;
+    border: 0;
+    box-shadow: none;
     outline: none;
     cursor: pointer;
 
     -webkit-appearance: none;
     -moz-appearance: none;
-    appearance: none;
 }
 
 header button svg {
     width: 16px;
-    heigth: 16px;
+    height: 16px;
+
     position: absolute;
     top: 50%;
     left: 50%;
+
     margin: -8px 0 0 -8px;
 }
 
@@ -92,12 +98,51 @@ ul.todo li {
     width: 100%;
     height: 50px;
     float: left;
+
     background: #ffffff;
     border-radius: 5px;
+    position: relative;
     box-shadow: 0 1px 2px rgba(44, 62, 80, 0.10);
     margin: 0 0 10px 0;
+    padding: 14px 100px 14px 14px;
+
 }
 
 ul.todo li:last-of-type {
- margin: 0;
+    margin: 0;
+}
+
+ul.todo li .buttons {
+    width: 100px;
+    height: 50px;
+
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+ul.todo li .buttons button {
+    width: 50px;
+    height: 50px;
+    float: left;
+    background: none;
+    position: relative;
+    border: 0;
+    box-shadow: none;
+    outline: none;
+    cursor: pointer;
+
+    -webkit-appearance: none;
+    -moz-appearance: none;
+}
+
+ul.todo li .buttons button:last-of-type {
+    content: '';
+    width: 1px;
+    height: 30px;
+    background: #edf0f1;
+
+    position: absolute;
+    top: 10px;
+    left: 0;
 }
