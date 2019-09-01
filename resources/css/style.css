@@ -1,5 +1,9 @@
 @charset "UTF-8";
 
+body{
+ background: #edf0f1;
+}
+
 body, input, button {
     font-family: 'Roboto', sans-serif;
 }
@@ -52,6 +56,8 @@ header button {
     border-radius: 25px;
     background: #ffffff;
     outline: none;
+    cursor: pointer;
+
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
