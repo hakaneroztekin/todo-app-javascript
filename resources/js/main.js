@@ -41,12 +41,21 @@ function completeItem() {
     if(parentList === toDoList) {
         // item to be completed
         toDoList.removeChild(listItem);
+        data.todoListArray.splice(data.todoListArray.indexOf(listItem), 1);
+
         completedList.insertBefore(listItem, completedList.childNodes[0]);
+        data.completedListArray.push(listItem);
+
     } else if (parentList === completedList) {
         // item is completed
         completedList.removeChild(listItem);
+        data.completedListArray.splice(data.todoListArray.indexOf(listItem), 1);
+
         toDoList.insertBefore(listItem, toDoList.childNodes[0]);
+        data.todoListArray.push(listItem);
     }
+
+    console.log(data);
 }
 
 // add new item to the to do list
