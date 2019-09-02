@@ -15,3 +15,6 @@ Developed with JavaScript, HTML, CSS and WebStorm
 ## Developer
 [@hakaneroztekin](www.github.com/hakaneroztekin)
 
+## Credits
+Special thanks to Max for his [tutorial](https://www.youtube.com/watch?v=2wCpkOk2uCg).
+
