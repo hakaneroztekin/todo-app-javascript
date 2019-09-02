@@ -225,7 +225,7 @@ ul.todo#completed:before {
 
     position: absolute;
     top: 30px;
-    left: 50%;
+    left: 45%;
 
     margin-top: -37px;
 }
@@ -235,3 +235,21 @@ ul.todo#completed:not(:empty) {
     padding-top: 15px;
 }
 
+ul.todo#todo:empty:after {
+    content: "Your to-do list is empty";
+    margin: 20px 0 15px 0;
+}
+
+
+ul.todo#completed:empty::after {
+    content: "You haven't completed any tasks"
+}
+
+ul.todo#todo::after,
+ul.todo#completed::after {
+    width: 100%;
+    display: block;
+    text-align: center;
+    font-size: 14px;
+    color: #aaaaaa;
+}
