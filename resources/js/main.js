@@ -28,7 +28,6 @@ function removeItem() {
     list.removeChild(listItem);
 
     data.todoListArray.splice(data.todoListArray.indexOf(listItem), 1);
-    console.log(data);
 }
 
 // complete item
@@ -41,21 +40,20 @@ function completeItem() {
     if(parentList === toDoList) {
         // item to be completed
         toDoList.removeChild(listItem);
-        data.todoListArray.splice(data.todoListArray.indexOf(listItem), 1);
+        data.todoListArray.splice(data.todoListArray.indexOf(listItem.innerText), 1);
 
         completedList.insertBefore(listItem, completedList.childNodes[0]);
-        data.completedListArray.push(listItem);
+        data.completedListArray.push(listItem.innerText);
 
     } else if (parentList === completedList) {
         // item is completed
         completedList.removeChild(listItem);
-        data.completedListArray.splice(data.todoListArray.indexOf(listItem), 1);
+        data.completedListArray.splice(data.todoListArray.indexOf(listItem.innerText), 1);
 
         toDoList.insertBefore(listItem, toDoList.childNodes[0]);
-        data.todoListArray.push(listItem);
+        data.todoListArray.push(listItem.innerText);
     }
 
-    console.log(data);
 }
 
 // add new item to the to do list
@@ -92,7 +90,5 @@ function addItemTodo(text) {
     buttons.appendChild(remove);
     buttons.appendChild(complete);
 
-    data.todoListArray.push(listItem);
-    console.log(data);
-
+    data.todoListArray.push(listItem.innerText);
 }
