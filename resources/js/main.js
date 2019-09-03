@@ -17,7 +17,7 @@ getDataFromStorage();
 
 function addItemToDoList(item) {
     if(item.value) {
-        addItemTodo(item.value, 'todo', false);
+        addItemToDOM(item.value, 'todo', false);
         item.value = ''; // clear the input field
     }
 }
@@ -39,10 +39,10 @@ function getDataFromStorage () {
     let todoListLength = data.todoListArray.length;
     let completedListLength = data.completedListArray.length;
     for(let i = 0; i < todoListLength; i++) {
-        addItemTodo(data.todoListArray[i], 'todo', true);
+        addItemToDOM(data.todoListArray[i], 'todo', true);
     }
     for(let j = 0; j < data.completedListArray.length; j++) {
-        addItemTodo(data.completedListArray[j], 'completed', true);
+        addItemToDOM(data.completedListArray[j], 'completed', true);
     }
 
 }
@@ -94,7 +94,7 @@ function completeItem() {
 }
 
 // add new item to the to do list
-function addItemTodo(text, listName, loadingFromStorage) {
+function addItemToDOM(text, listName, loadingFromStorage) {
     let list = document.getElementById(listName);
 
     // <li>
