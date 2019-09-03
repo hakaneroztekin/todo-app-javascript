@@ -1,6 +1,6 @@
 
 // Data object to be stored
-var data = {
+let data = {
     todoListArray: [],
     completedListArray: []
 };
@@ -25,12 +25,13 @@ document.getElementById('add').addEventListener('click', function () {
 function removeItem() {
     let listItem = this.parentNode.parentNode; // "listItem" is the parent of "buttons", which is the parent of "remove" button
     let list = listItem.parentNode; // to do list
-    list.removeChild(listItem);
     if(list.id === "todo") {
         data.todoListArray.splice(data.todoListArray.indexOf(listItem.innerText), 1);
     } else if (list.id === "completed") {
         data.completedListArray.splice(data.completedListArray.indexOf(listItem.innerText), 1);
     }
+    list.removeChild(listItem);
+    console.log(data);
 }
 
 // complete item
@@ -93,4 +94,5 @@ function addItemTodo(text) {
     buttons.appendChild(complete);
 
     data.todoListArray.push(listItem.innerText);
+    console.log(data);
 }
