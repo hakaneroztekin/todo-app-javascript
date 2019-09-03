@@ -15,19 +15,21 @@ let completeSVG = '<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:x
 console.log(JSON.parse(toDoListAtStorage));
 getDataFromStorage();
 
-// user clicks on the add button
-document.getElementById('add').addEventListener('click', function () {
-    let item = document.getElementById('item');
+function addItemToDoList(item) {
     if(item.value) {
         addItemTodo(item.value, 'todo', false);
         item.value = ''; // clear the input field
     }
+}
+
+// user clicks on the add button
+document.getElementById('add').addEventListener('click', function () {
+    addItemToDoList(document.getElementById('item'))
 });
 
 document.getElementById('item').addEventListener('keydown', function (event) {
-    if(event.code === 'Enter' && this.value) {
-        addItemTodo(this.value, 'todo', false);
-        item.value = ''; // clear the input field
+    if(event.code === 'Enter') {
+        addItemToDoList(this);
     }
 })
 
