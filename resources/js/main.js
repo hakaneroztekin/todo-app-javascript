@@ -20,9 +20,16 @@ document.getElementById('add').addEventListener('click', function () {
     let item = document.getElementById('item');
     if(item.value) {
         addItemTodo(item.value, 'todo', false);
-        item.value = '';
+        item.value = ''; // clear the input field
     }
 });
+
+document.getElementById('item').addEventListener('keydown', function (event) {
+    if(event.code === 'Enter' && this.value) {
+        addItemTodo(this.value, 'todo', false);
+        item.value = ''; // clear the input field
+    }
+})
 
 function getDataFromStorage () {
     if(data.todoListArray === null && data.completedListArray === null) return;
