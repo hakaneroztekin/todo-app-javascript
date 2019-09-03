@@ -20,6 +20,13 @@ document.getElementById('add').addEventListener('click', function () {
     }
 });
 
+// use Local Storage to store data
+function dataObjectUpdated() {
+    // we convert data object to JSON string to store it
+    // we need it because we can't directly store an object with the method
+    localStorage.setItem('todoList', JSON.stringify(data));
+}
+
 // remove item
 function removeItem() {
     let listItem = this.parentNode.parentNode; // "listItem" is the parent of "buttons", which is the parent of "remove" button
@@ -30,7 +37,7 @@ function removeItem() {
         data.completedListArray.splice(data.completedListArray.indexOf(trimTextContent(listItem.textContent)), 1);
     }
     list.removeChild(listItem);
-    console.log(data);
+    dataObjectUpdated();
 }
 
 // complete item
@@ -56,6 +63,7 @@ function completeItem() {
         toDoList.insertBefore(listItem, toDoList.childNodes[0]);
         data.todoListArray.push(trimTextContent(listItem.textContent));
     }
+    dataObjectUpdated();
 }
 
 // add new item to the to do list
@@ -93,7 +101,7 @@ function addItemTodo(text) {
     buttons.appendChild(complete);
 
     data.todoListArray.push(trimTextContent(listItem.textContent));
-    console.log(data);
+    dataObjectUpdated();
 }
 
 function trimTextContent(textContent) {
