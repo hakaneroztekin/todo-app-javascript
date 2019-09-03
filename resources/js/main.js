@@ -19,7 +19,7 @@ getDataFromStorage();
 document.getElementById('add').addEventListener('click', function () {
     let item = document.getElementById('item');
     if(item.value) {
-        addItemTodo(item.value, 'todo');
+        addItemTodo(item.value, 'todo', false);
         item.value = '';
     }
 });
@@ -27,11 +27,13 @@ document.getElementById('add').addEventListener('click', function () {
 function getDataFromStorage () {
     if(data.todoListArray === null && data.completedListArray === null) return;
     console.log(data);
-    for(let i = 0; i < data.todoListArray.length; i++) {
-        addItemTodo(data.todoListArray[i], 'todo');
+    let todoListLength = data.todoListArray.length;
+    let completedListLength = data.completedListArray.length;
+    for(let i = 0; i < todoListLength; i++) {
+        addItemTodo(data.todoListArray[i], 'todo', true);
     }
     for(let j = 0; j < data.completedListArray.length; j++) {
-        // addItemTodo(data.completedListArray[j], 'completed');
+        addItemTodo(data.completedListArray[j], 'completed', true);
     }
 
 }
@@ -83,7 +85,7 @@ function completeItem() {
 }
 
 // add new item to the to do list
-function addItemTodo(text, listName) {
+function addItemTodo(text, listName, loadingFromStorage) {
     let list = document.getElementById(listName);
 
     // <li>
@@ -116,7 +118,9 @@ function addItemTodo(text, listName) {
     buttons.appendChild(remove);
     buttons.appendChild(complete);
 
-    data.todoListArray.push(trimTextContent(listItem.textContent));
+    if(!loadingFromStorage) {
+        data.todoListArray.push(trimTextContent(listItem.textContent));
+    }
     dataObjectUpdated();
 }
 
