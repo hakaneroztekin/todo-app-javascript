@@ -26,8 +26,11 @@ function removeItem() {
     let listItem = this.parentNode.parentNode; // "listItem" is the parent of "buttons", which is the parent of "remove" button
     let list = listItem.parentNode; // to do list
     list.removeChild(listItem);
-
-    data.todoListArray.splice(data.todoListArray.indexOf(listItem), 1);
+    if(list.id === "todo") {
+        data.todoListArray.splice(data.todoListArray.indexOf(listItem.innerText), 1);
+    } else if (list.id === "completed") {
+        data.completedListArray.splice(data.completedListArray.indexOf(listItem.innerText), 1);
+    }
 }
 
 // complete item
@@ -53,7 +56,6 @@ function completeItem() {
         toDoList.insertBefore(listItem, toDoList.childNodes[0]);
         data.todoListArray.push(listItem.innerText);
     }
-
 }
 
 // add new item to the to do list
