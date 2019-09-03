@@ -1,4 +1,3 @@
-
 // Data object to be stored
 let data = {
     todoListArray: [],
@@ -31,7 +30,6 @@ function removeItem() {
         data.completedListArray.splice(data.completedListArray.indexOf(listItem.innerText), 1);
     }
     list.removeChild(listItem);
-    console.log(data);
 }
 
 // complete item
@@ -43,16 +41,16 @@ function completeItem() {
 
     if(parentList === toDoList) {
         // item to be completed
-        toDoList.removeChild(listItem);
         data.todoListArray.splice(data.todoListArray.indexOf(listItem.innerText), 1);
+        toDoList.removeChild(listItem);
 
         completedList.insertBefore(listItem, completedList.childNodes[0]);
         data.completedListArray.push(listItem.innerText);
 
     } else if (parentList === completedList) {
         // item is completed
-        completedList.removeChild(listItem);
         data.completedListArray.splice(data.todoListArray.indexOf(listItem.innerText), 1);
+        completedList.removeChild(listItem);
 
         toDoList.insertBefore(listItem, toDoList.childNodes[0]);
         data.todoListArray.push(listItem.innerText);
@@ -94,5 +92,4 @@ function addItemTodo(text) {
     buttons.appendChild(complete);
 
     data.todoListArray.push(listItem.innerText);
-    console.log(data);
 }
