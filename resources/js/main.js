@@ -25,11 +25,12 @@ function removeItem() {
     let listItem = this.parentNode.parentNode; // "listItem" is the parent of "buttons", which is the parent of "remove" button
     let list = listItem.parentNode; // to do list
     if(list.id === "todo") {
-        data.todoListArray.splice(data.todoListArray.indexOf(listItem.innerText), 1);
+        data.todoListArray.splice(data.todoListArray.indexOf(trimTextContent(listItem.textContent)), 1);
     } else if (list.id === "completed") {
-        data.completedListArray.splice(data.completedListArray.indexOf(listItem.innerText), 1);
+        data.completedListArray.splice(data.completedListArray.indexOf(trimTextContent(listItem.textContent)), 1);
     }
     list.removeChild(listItem);
+    console.log(data);
 }
 
 // complete item
@@ -41,19 +42,19 @@ function completeItem() {
 
     if(parentList === toDoList) {
         // item to be completed
-        data.todoListArray.splice(data.todoListArray.indexOf(listItem.innerText), 1);
+        data.todoListArray.splice(data.todoListArray.indexOf(trimTextContent(listItem.textContent)), 1);
         toDoList.removeChild(listItem);
 
         completedList.insertBefore(listItem, completedList.childNodes[0]);
-        data.completedListArray.push(listItem.innerText);
+        data.completedListArray.push(trimTextContent(listItem.textContent));
 
     } else if (parentList === completedList) {
         // item is completed
-        data.completedListArray.splice(data.todoListArray.indexOf(listItem.innerText), 1);
+        data.completedListArray.splice(data.todoListArray.indexOf(trimTextContent(listItem.textContent)), 1);
         completedList.removeChild(listItem);
 
         toDoList.insertBefore(listItem, toDoList.childNodes[0]);
-        data.todoListArray.push(listItem.innerText);
+        data.todoListArray.push(trimTextContent(listItem.textContent));
     }
 }
 
@@ -63,7 +64,7 @@ function addItemTodo(text) {
 
     // <li>
     let listItem = document.createElement('li');
-    listItem.innerText = text;
+    listItem.textContent = text;
 
     // <div class="buttons">
     let buttons = document.createElement('div');
@@ -91,5 +92,10 @@ function addItemTodo(text) {
     buttons.appendChild(remove);
     buttons.appendChild(complete);
 
-    data.todoListArray.push(listItem.innerText);
+    data.todoListArray.push(trimTextContent(listItem.textContent));
+    console.log(data);
+}
+
+function trimTextContent(textContent) {
+    return textContent.replace(/[\n\r]+|[\s]{2,}/g, ' ').trim();
 }
