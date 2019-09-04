@@ -141,13 +141,17 @@ function trimTextContent(textContent) {
  * Method for sending to-do item to API
  */
 function sendItemToAPI(value) {
-    console.log('Sending to API, value: ' + value);
     let request = new XMLHttpRequest();
+    let valueJSON = JSON.stringify({value: value});
+    console.log('Sending request to API');
+    console.log(valueJSON);
     request.open('POST', '/add'); // Configure the request: POST method to '/add'
-    request.send(value); // send the request
+    request.setRequestHeader('Content-Type', 'application/json');
+    request.send(valueJSON); // send the request
 
     request.addEventListener('load', () => {
-        console.log('Response: ' + request.responseText);
+        console.log('Response received');
+        console.log(request.response);
     });
 
     request.addEventListener('error', (e) => {
