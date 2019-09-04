@@ -1,9 +1,16 @@
 // load express into our project
 const express = require('express');
 
+// dependency to use JSON with HTTP requests & responses
+const bodyParser = require('body-parser');
+
 // set up the api 
 const api = express();
-
+// use bodyParser
+api.use(bodyParser.urlencoded({
+    extended: true
+}));
+api.use(bodyParser.json());
 /*
  * nextAction provides what to execute after this function
  * if we dont use it, page will execute the function below
@@ -26,6 +33,8 @@ api.use(express.static(__dirname,  { index: 'index.html' }));
  * and when the server starts, run the function
  * To start the server, use this command in the console,
  * node ./src/index.js
+ * Also, since we've added 'api' script to package.json,
+ * we can run api with; npm run api
 */
 api.listen(3000, () => {
     console.log('API is up and running');
@@ -46,5 +55,6 @@ api.listen(3000, () => {
 // Post request when we add a new item
 api.post('/add', (req, res) => {
     console.log("Request to /add is received");
+    console.log(req.body);
     res.send("add item");
 });
