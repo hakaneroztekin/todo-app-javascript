@@ -4,18 +4,33 @@ const express = require('express');
 // set up the api 
 const api = express();
 
+/*
+ * nextAction provides what to execute after this function
+ * if we dont use it, page will execute the function below
+ * but it will stuck on loading phase because
+ * no next function is provided
+ * details of request and response provided below
+ * more on this, you can check out: "Express Middleware"
+ */
+// api.use((request, response, nextAction) => {
+//     console.log("Hellö");
+//     nextAction();
+// });
+
+api.use(express.static(__dirname,  { index: 'index.html' }));
 
 /*
  * listen at port 3000
- * Because it's running locally, it's at localhost:3000
+ * Because it's running locally,
+ * it'll serve at localhost:3000
  * and when the server starts, run the function
- * To start it: use this command in the console,
- * node todo-app-javascript>node ./src/index.js
+ * To start the server, use this command in the console,
+ * node ./src/index.js
 */
 api.listen(3000, () => {
     console.log('API is up and running');
+    console.log('http://localhost:3000');
 });
-
 
 /*
  * When the URL ('/') is requested, run the method
@@ -23,7 +38,7 @@ api.listen(3000, () => {
  * After running the api, if we go to localhost:3000
  * at the browser, we'll see the response message :)
 */
-api.get('/', (request, response) => {
-//    console.log(request); // prints a lot of info about the request 
-    response.send("Hello world");
-})
+// api.get('/', (request, response) => {
+// //    console.log(request); // prints a lot of info about the request
+//     response.send("Hello world");
+// });
