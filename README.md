@@ -20,5 +20,5 @@ You can add➕ remove🗑️ and complete✔️ items on your list. New added it
 [@hakaneroztekin](www.github.com/hakaneroztekin)
 
 ## Credits
-Special thanks to Max for his [tutorial](https://www.youtube.com/watch?v=2wCpkOk2uCg).
+Special thanks to Max for his [tutorials](https://www.youtube.com/channel/UCr1BiYXeVfpWRCkS0MGjYkQ).
 
