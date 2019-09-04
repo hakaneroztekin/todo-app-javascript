@@ -42,3 +42,8 @@ api.listen(3000, () => {
 // //    console.log(request); // prints a lot of info about the request
 //     response.send("Hello world");
 // });
+
+// Post request when we add a new item
+api.post('/add', (req, res) => {
+    console.log("add item");
+});
