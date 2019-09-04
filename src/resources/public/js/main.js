@@ -145,7 +145,9 @@ function sendItemToAPI(value) {
     let valueJSON = JSON.stringify({value: value});
     console.log('Sending request to API');
     console.log(valueJSON);
-    request.open('POST', '/add'); // Configure the request: POST method to '/add'
+    // Configure the request: POST method to '/add'
+    request.open('POST', '/add');
+    // Let API know it's JSON data
     request.setRequestHeader('Content-Type', 'application/json');
     request.send(valueJSON); // send the request
 
