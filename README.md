@@ -1,4 +1,4 @@
-# To-Do App with JavaScript
+# 📋 To-Do App with JavaScript
 Keep your fancy list of actions to do.
 
 # How to Use
