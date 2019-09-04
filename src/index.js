@@ -24,6 +24,6 @@ api.listen(3000, () => {
  * at the browser, we'll see the response message :)
 */
 api.get('/', (request, response) => {
-    console.log(request);
+//    console.log(request); // prints a lot of info about the request 
     response.send("Hello world");
 })
