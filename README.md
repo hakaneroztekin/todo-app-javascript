@@ -6,7 +6,7 @@ You can add➕ remove🗑️ and complete✔️ items on your list. New added it
 
 ![Alt text](app.png)
 
-# Further Development
+# Progress & Further Development
 ✔️ Develop the front-end application
 
 ✔️ Set up NodeJS server and Send/receive HTTP requests 
