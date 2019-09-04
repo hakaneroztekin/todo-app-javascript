@@ -7,10 +7,10 @@ You can add➕ remove🗑️ and complete✔️ items on your list. New added it
 ![Alt text](app.png)
 
 # Further Development
-Currently To-do App is a front-end application. I plan to integrate it with backend.
+The first version of To-do App is a front-end application. Currently working to integrate it with back-end.
 
 # Tools & Techs Used
-Developed with JavaScript, HTML, CSS and WebStorm
+**Tech stack:** JavaScript, NodeJS, ExpressJS, Postman, HTML, CSS and WebStorm
 
 ## Developer
 [@hakaneroztekin](www.github.com/hakaneroztekin)
