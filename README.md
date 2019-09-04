@@ -9,12 +9,12 @@ You can add➕ remove🗑️ and complete✔️ items on your list. New added it
 # Progress & Further Development
 ✔️ Develop the front-end application
 
-✔️ Set up NodeJS server and Send/receive HTTP requests 
+✔️ Set up NodeJS server and send/receive HTTP requests 
 
 ⛱ **Next Step:** Set up MySQL RDBMS and store/load objects from the DB
 
 # Tools & Techs Used
-**Tech stack:** JavaScript, NodeJS, ExpressJS, Postman, HTML, CSS and WebStorm
+**Tech stack:** JavaScript, NodeJS, ExpressJS, Postman, HTML, CSS and WebStorm (and soon, MySQL)
 
 ## Developer
 [@hakaneroztekin](www.github.com/hakaneroztekin)
