@@ -4,6 +4,26 @@ const express = require('express');
 // dependency to use JSON with HTTP requests & responses
 const bodyParser = require('body-parser');
 
+// mysql
+const mysql = require('mysql2');
+
+// .env for credentials
+require('dotenv').config();
+
+const connection = mysql.createConnection({
+    host : 'localhost',
+    user : process.env.DATABASE_USERNAME,
+    password : process.env.DATABASE_PASSWORD,
+    database : 'todo'
+});
+
+try {
+    connection.connect();
+} catch (e) {
+    console.log("Connection to database is failed");
+    console.log(e);
+}
+
 // set up the api 
 const api = express();
 // use bodyParser
