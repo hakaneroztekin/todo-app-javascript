@@ -8,6 +8,7 @@ const bodyParser = require('body-parser');
 const mysql = require('mysql2');
 
 // .env for credentials
+// https://stackoverflow.com/a/37603696
 require('dotenv').config();
 
 const connection = mysql.createConnection({
