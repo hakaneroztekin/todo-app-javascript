@@ -142,7 +142,7 @@ function trimTextContent(textContent) {
  */
 function sendItemToAPI(value) {
     let request = new XMLHttpRequest();
-    let valueJSON = JSON.stringify({value: value});
+    let valueJSON = JSON.stringify({description: value});
     console.log('Sending request to API');
     console.log(valueJSON);
     // Configure the request: POST method to '/add'
