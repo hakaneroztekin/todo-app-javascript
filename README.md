@@ -23,6 +23,8 @@ For the development purposes, you can follow the steps below:
 
 2- Run index.js (Server)
 
+Don't forget to determine environment variables in an .env file at the root folder. These variables are used at index.js.
+
 Happy coding :)
 
 ## Developer

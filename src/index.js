@@ -9,13 +9,13 @@ const bodyParser = require('body-parser');
 const mysql = require('mysql2');
 
 // config with .env variables
-const { username, password } = require('../config');
+const { host, port, database, username, password } = require('../config');
 
 const connection = mysql.createConnection({
-    host : 'localhost',
+    host : host,
+    database : database,
     user : username,
-    password : password,
-    database : 'todo'
+    password : password
 });
 
 try {
@@ -57,9 +57,9 @@ api.use(express.static(__dirname,  { index: 'index.html' }));
  * Also, since we've added 'api' script to package.json,
  * we can run api with; npm run api
 */
-api.listen(3000, () => {
+api.listen(port, () => {
     console.log('API is up and running');
-    console.log('http://localhost:3000');
+    console.log('http://' + host + ":" + port);
 });
 
 /*

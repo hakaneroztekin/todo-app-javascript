@@ -3,6 +3,9 @@
 // console.log(require('dotenv').config({path: __dirname + '/.env'}));
 require('dotenv').config({path: __dirname + '/.env'});
 module.exports = {
-    username : process.env.DATABASE_USERNAME,
-    password : process.env.DATABASE_PASSWORD
+    host : process.env.HOST,
+    port : process.env.PORT,
+    database : process.env.DATABASE,
+    username : process.env.DB_USERNAME,
+    password : process.env.DB_PASSWORD
 };
