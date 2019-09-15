@@ -18,7 +18,10 @@ document.getElementById('item').addEventListener('keydown', function (event) {
 function addItemToDoList(item) {
     if(item.value) {
         addItemToDOM(item.value, 'todo', false);
-        sendItemToAPI(item.value);
+        sendItemToAPI(item.value, (resultItem) => {
+            console.log("resultItem");
+            console.log(resultItem);
+        });
         item.value = ''; // clear the input field
     }
 }
@@ -102,17 +105,17 @@ function addItemToDOM(text, listName, loadingFromStorage) {
 /**
  * Method for sending to-do item to API
  */
-function sendItemToAPI(value) {
+function sendItemToAPI(value, callback) {
     executeHTTPRequest(value, 'POST', '/add');
 }
 
-function executeHTTPRequest(value, request, endpoint) {
+function executeHTTPRequest(value, request, endpoint, callback) {
     if(request === 'POST') {
-        post(value, endpoint);
+        post(value, endpoint, callback);
     }
 }
 
-function post(value, endpoint) {
+function post(value, endpoint, callback) {
     let request = new XMLHttpRequest();
     let valueJSON = JSON.stringify({description: value});
     console.log('POST ' + value + " to " + endpoint);
@@ -129,7 +132,11 @@ function post(value, endpoint) {
 
     request.addEventListener('load', () => {
         console.log('Response received');
-        console.log(request.response);
+        console.log(request.responseText);
+        let responseJSON = JSON.parse(request.responseText);
+        if(responseJSON.error) return console.log(responseJSON.error);
+
+        if(callback) callback(responseJSON);
     });
 
     request.addEventListener('error', (e) => {

@@ -77,7 +77,6 @@ api.listen(port, () => {
 api.post('/add', (req, res) => {
     console.log("Request to /add is received");
     console.log(req.body);
-    res.send("add item");
 
     let queryString = "INSERT INTO tasks (description) VALUES (?)";
     connection.query(queryString, [req.body.description], (error, results) => {
@@ -88,7 +87,11 @@ api.post('/add', (req, res) => {
             // id of the inserted element
             // id will be used for updating the item
             let id = results[0]['LAST_INSERT_ID()'];
-            console.log(id);
+            res.json({
+                id: id,
+                description: req.body.description
+            });
+            res.send();
         })
     });
 });
