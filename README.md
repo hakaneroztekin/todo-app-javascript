@@ -16,6 +16,15 @@ You can add➕ remove🗑️ and complete✔️ items on your list. New added it
 # Tools & Techs Used
 **Tech stack:** JavaScript, NodeJS, ExpressJS, Postman, HTML, CSS and WebStorm (and soon, MySQL)
 
+## How to run
+For the development purposes, you can follow the steps below: 
+
+1- Run index.html (Client)
+
+2- Run index.js (Server)
+
+Happy coding :)
+
 ## Developer
 [@hakaneroztekin](www.github.com/hakaneroztekin)
 
