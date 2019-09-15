@@ -103,15 +103,29 @@ function addItemToDOM(text, listName, loadingFromStorage) {
  * Method for sending to-do item to API
  */
 function sendItemToAPI(value) {
+    executeHTTPRequest(value, 'POST', '/add');
+}
+
+function executeHTTPRequest(value, request, endpoint) {
+    if(request === 'POST') {
+        post(value, endpoint);
+    }
+}
+
+function post(value, endpoint) {
     let request = new XMLHttpRequest();
     let valueJSON = JSON.stringify({description: value});
-    console.log('Sending request to API');
+    console.log('POST ' + value + " to " + endpoint);
     console.log(valueJSON);
-    // Configure the request: POST method to '/add'
-    request.open('POST', '/add');
+
+    // Configure the request: POST method to the endpoint
+    request.open('POST', endpoint);
+
     // Let API know it's JSON data
     request.setRequestHeader('Content-Type', 'application/json');
-    request.send(valueJSON); // send the request
+
+    // Send the request
+    request.send(valueJSON);
 
     request.addEventListener('load', () => {
         console.log('Response received');
@@ -119,7 +133,7 @@ function sendItemToAPI(value) {
     });
 
     request.addEventListener('error', (e) => {
-        console.log('Error occured.');
+        console.log('Error occurred.');
         console.log(e);
     });
 }
