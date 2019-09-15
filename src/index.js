@@ -1,3 +1,4 @@
+
 // load express into our project
 const express = require('express');
 
@@ -7,14 +8,13 @@ const bodyParser = require('body-parser');
 // mysql
 const mysql = require('mysql2');
 
-// .env for credentials
-// https://stackoverflow.com/a/37603696
-require('dotenv').config();
+// config with .env variables
+const { username, password } = require('../config');
 
 const connection = mysql.createConnection({
     host : 'localhost',
-    user : process.env.DATABASE_USERNAME,
-    password : process.env.DATABASE_PASSWORD,
+    user : username,
+    password : password,
     database : 'todo'
 });
 
