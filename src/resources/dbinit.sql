@@ -1,9 +1,10 @@
 --How to set up:
 --For win10, install mysql community edt (google "dev mysql download")
---Open MySQL command line client, and enter the password you've created during installation
+--Open MySQL Command Line Client, and enter the password you've created during installation
 --then copy, paste the lines below (right clicking in the MySQL client will paste the content)
---after creating the db, use "select todo"
+--after creating the db, select todo with "SELECT todo;"
 -- additional useful commands:
+-- SHOW DATABASES;     shows existing databases
 -- SHOW TABLES;     shows existing tables
 -- DESCRIBE tasks;  shows details of the tasks table
 
