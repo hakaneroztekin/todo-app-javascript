@@ -17,10 +17,8 @@ document.getElementById('item').addEventListener('keydown', function (event) {
 
 function addItemToDoList(item) {
     if(item.value) {
-        addItemToDOM(item.value, 'todo', false);
         sendItemToAPI(item.value, (resultItem) => {
-            console.log("resultItem");
-            console.log(resultItem);
+            addItemToDOM(resultItem, 'todo');
         });
         item.value = ''; // clear the input field
     }
@@ -53,26 +51,25 @@ function completeItem() {
         // item to be completed
         // todo execute todoList changes on API
         toDoList.removeChild(listItem);
-
         completedList.insertBefore(listItem, completedList.childNodes[0]);
 
     } else if (parentList === completedList) {
         // item is completed
         // todo execute completedList changes on API
         completedList.removeChild(listItem);
-
         toDoList.insertBefore(listItem, toDoList.childNodes[0]);
     }
     dataObjectUpdated();
 }
 
 // add new item to the to do list
-function addItemToDOM(text, listName, loadingFromStorage) {
+function addItemToDOM(task, listName) {
     let list = document.getElementById(listName);
 
     // <li>
     let listItem = document.createElement('li');
-    listItem.textContent = text;
+    listItem.textContent = task.description;
+    listItem.setAttribute('data-id', task.id);
 
     // <div class="buttons">
     let buttons = document.createElement('div');
@@ -106,7 +103,7 @@ function addItemToDOM(text, listName, loadingFromStorage) {
  * Method for sending to-do item to API
  */
 function sendItemToAPI(value, callback) {
-    executeHTTPRequest(value, 'POST', '/add');
+    executeHTTPRequest(value, 'POST', '/add', callback);
 }
 
 function executeHTTPRequest(value, request, endpoint, callback) {
