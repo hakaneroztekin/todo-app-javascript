@@ -14,7 +14,7 @@ You can add➕ remove🗑️ and complete✔️ items on your list. New added it
 ⛱ **Next Step:** Set up MySQL RDBMS and store/load objects from the DB
 
 # Tools & Techs Used
-**Tech stack:** JavaScript, NodeJS, ExpressJS, Postman, HTML, CSS and WebStorm (and soon, MySQL)
+**Tech stack:** JavaScript, NodeJS, ExpressJS, RESTful API, MySQL, Postman, HTML, CSS and WebStorm
 
 ## How to run
 For the development purposes, you can follow the steps below: 
