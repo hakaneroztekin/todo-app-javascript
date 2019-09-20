@@ -95,3 +95,16 @@ api.post('/add', (req, res) => {
         })
     });
 });
+
+// get items
+api.get('/tasks', (req, res) => {
+    let queryString = "SELECT * FROM tasks ORDER BY creation_date DESC";
+    connection.query(queryString, (error, results) => {
+        if (error) return console.log("Error happened in query " + error);
+
+        res.json({
+            todo: results.filter((task) => !task.completed),
+            completed: results.filter((task) => task.completed)
+        });
+    });
+});
