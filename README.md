@@ -11,7 +11,9 @@ You can add➕ remove🗑️ and complete✔️ items on your list. New added it
 
 ✔️ Set up NodeJS server and send/receive HTTP requests 
 
-⛱ **Next Step:** Set up MySQL RDBMS and store/load objects from the DB
+✔️ Set up MySQL RDBMS and store/load objects from the DB (GET, POST, PUT, DELETE)
+
+⛱ **Next Step:** Tidy the code (seperate REST HTTP requests from index.js) & plan on deploying 
 
 # Tools & Techs Used
 **Tech stack:** JavaScript, NodeJS, ExpressJS, RESTful API, MySQL, Postman, HTML, CSS and WebStorm
