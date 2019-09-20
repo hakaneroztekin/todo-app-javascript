@@ -1,4 +1,3 @@
-
 // load express into our project
 const express = require('express');
 
@@ -9,13 +8,13 @@ const bodyParser = require('body-parser');
 const mysql = require('mysql2');
 
 // config with .env variables
-const { host, port, database, username, password } = require('../config');
+const {host, port, database, username, password} = require('../config');
 
 const connection = mysql.createConnection({
-    host : host,
-    database : database,
-    user : username,
-    password : password
+    host: host,
+    database: database,
+    user: username,
+    password: password
 });
 
 try {
@@ -45,7 +44,7 @@ api.use(bodyParser.json());
 //     nextAction();
 // });
 
-api.use(express.static(__dirname,  { index: 'index.html' }));
+api.use(express.static(__dirname, {index: 'index.html'}));
 
 /*
  * listen at port 3000

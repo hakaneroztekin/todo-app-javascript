@@ -13,13 +13,13 @@ document.getElementById('add').addEventListener('click', function () {
 });
 
 document.getElementById('item').addEventListener('keydown', function (event) {
-    if(event.code === 'Enter') {
+    if (event.code === 'Enter') {
         addItemToDoList(this);
     }
 });
 
 function addItemToDoList(item) {
-    if(item.value) {
+    if (item.value) {
         sendItemToAPI(item.value, (resultItem) => {
             addItemToDOM(resultItem, 'todo');
         });
@@ -50,7 +50,7 @@ function completeItem() {
     let toDoList = document.getElementById('todo');
     let completedList = document.getElementById('completed');
 
-    if(parentList === toDoList) {
+    if (parentList === toDoList) {
         // item to be completed
         // todo execute todoList changes on API
         toDoList.removeChild(listItem);
@@ -102,17 +102,15 @@ function addItemToDOM(task, listName) {
     dataObjectUpdated();
 }
 
-/**
- * Method for sending to-do item to API
- */
+// Method for sending to-do item to API
 function sendItemToAPI(value, callback) {
     executeHTTPRequest(value, 'POST', '/add', callback);
 }
 
+// Get all items from API
 function getAllTasks() {
-    executeHTTPRequest(null,'GET', '/tasks');
+    executeHTTPRequest(null, 'GET', '/tasks');
 }
-
 
 function executeHTTPRequest(value, request, endpoint, callback) {
     if (request === 'GET') {
@@ -133,8 +131,8 @@ function get(endpoint, callback) {
         console.log("Response received");
         console.log(request.responseText);
         let responseJSON = JSON.parse(request.responseText);
-        if(responseJSON.error) return console.log(responseJSON.error);
-        if(callback) callback(responseJSON);
+        if (responseJSON.error) return console.log(responseJSON.error);
+        if (callback) callback(responseJSON);
     });
 
     request.addEventListener('error', (e) => {
@@ -162,8 +160,8 @@ function post(value, endpoint, callback) {
         console.log('Response received');
         console.log(request.responseText);
         let responseJSON = JSON.parse(request.responseText);
-        if(responseJSON.error) return console.log(responseJSON.error);
-        if(callback) callback(responseJSON);
+        if (responseJSON.error) return console.log(responseJSON.error);
+        if (callback) callback(responseJSON);
     });
 
     request.addEventListener('error', (e) => {
