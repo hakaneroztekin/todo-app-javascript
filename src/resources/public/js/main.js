@@ -56,18 +56,19 @@ function completeItem() {
     let parentList = listItem.parentNode; // "listItem" is the parent of "buttons", which is the parent of "remove" button
     let toDoList = document.getElementById('todo');
     let completedList = document.getElementById('completed');
-
+    let listItemId = parseInt(listItem.getAttribute("id"));
     if (parentList === toDoList) {
         // item to be completed
         // todo execute todoList changes on API
         toDoList.removeChild(listItem);
         completedList.insertBefore(listItem, completedList.childNodes[0]);
-
+        updateTaskOnAPI(listItemId, true);
     } else if (parentList === completedList) {
         // item is completed
         // todo execute completedList changes on API
         completedList.removeChild(listItem);
         toDoList.insertBefore(listItem, toDoList.childNodes[0]);
+        updateTaskOnAPI(listItemId, false);
     }
     dataObjectUpdated();
 }
@@ -114,6 +115,12 @@ function sendItemToAPI(value, callback) {
     executeHTTPRequest(value, 'POST', '/add', callback);
 }
 
+// PUT Method to update item on API
+function updateTaskOnAPI(id, isCompleted) {
+    let endpoint = '/tasks/' + id + '/update';
+    executeHTTPRequest(isCompleted, 'PUT', endpoint)
+}
+
 // GET Method all items from API
 function getAllTasks(callback) {
     executeHTTPRequest(null, 'GET', '/tasks', callback);
@@ -131,6 +138,8 @@ function executeHTTPRequest(value, request, endpoint, callback) {
         post(value, endpoint, callback);
     } else if (request === 'DELETE') {
         deleteRequest(value, endpoint);
+    } else if (request === 'PUT') {
+        update(value, endpoint);
     }
 }
 
@@ -198,6 +207,27 @@ function deleteRequest(id, endpoint) {
 
     // Send the request
     request.send(idJSON);
+
+    request.addEventListener('error', (e) => {
+        console.log('Error occurred.');
+        console.log(e);
+    });
+}
+
+function update(value, endpoint) {
+    let request = new XMLHttpRequest();
+    console.log('PUT ' + value + " to " + endpoint);
+    let valueJSON = JSON.stringify({completed: value});
+    console.log(valueJSON);
+
+    // Configure the request: POST method to the endpoint
+    request.open('PUT', endpoint);
+
+    // Let API know it's JSON data
+    request.setRequestHeader('Content-Type', 'application/json');
+
+    // Send the request
+    request.send(valueJSON);
 
     request.addEventListener('error', (e) => {
         console.log('Error occurred.');
