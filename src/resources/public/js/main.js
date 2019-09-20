@@ -5,7 +5,14 @@ let removeSVG = '<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xli
 let completeSVG = '<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 22 22" style="enable-background:new 0 0 22 22;" xml:space="preserve"><rect y="0" class="noFill" width="22" height="22"/><g><path class="fill" d="M9.7,14.4L9.7,14.4c-0.2,0-0.4-0.1-0.5-0.2l-2.7-2.7c-0.3-0.3-0.3-0.8,0-1.1s0.8-0.3,1.1,0l2.1,2.1l4.8-4.8c0.3-0.3,0.8-0.3,1.1,0s0.3,0.8,0,1.1l-5.3,5.3C10.1,14.3,9.9,14.4,9.7,14.4z"/></g></svg>            </button>\n';
 
 // fetch all tasks from API
-getAllTasks();
+getAllTasks((tasks) => {
+    tasks.todo.forEach((task) => {
+        addItemToDOM(task, 'todo')
+    });
+    tasks.completed.forEach((task) => {
+        addItemToDOM(task, 'completed')
+    });
+});
 
 // user clicks on the add button
 document.getElementById('add').addEventListener('click', function () {
@@ -108,8 +115,8 @@ function sendItemToAPI(value, callback) {
 }
 
 // Get all items from API
-function getAllTasks() {
-    executeHTTPRequest(null, 'GET', '/tasks');
+function getAllTasks(callback) {
+    executeHTTPRequest(null, 'GET', '/tasks', callback);
 }
 
 function executeHTTPRequest(value, request, endpoint, callback) {
@@ -129,8 +136,8 @@ function get(endpoint, callback) {
 
     request.addEventListener('load', () => {
         console.log("Response received");
-        console.log(request.responseText);
         let responseJSON = JSON.parse(request.responseText);
+        console.log(responseJSON);
         if (responseJSON.error) return console.log(responseJSON.error);
         if (callback) callback(responseJSON);
     });
