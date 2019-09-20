@@ -95,6 +95,18 @@ api.post('/add', (req, res) => {
     });
 });
 
+// update item
+api.put('/tasks/:id/update', (req, res) => {
+    let endpoint = '/tasks/' + req.params.id + '/update';
+    console.log("Request to " + endpoint + " is received");
+    console.log(req.body);
+
+    let queryString = "UPDATE tasks SET completed = ? WHERE id = ?"
+    connection.query(queryString, [req.body.completed, req.params.id], (error, results) => {
+        if (error) return console.log("Error happened in query " + error);
+    });
+});
+
 // get items
 api.get('/tasks', (req, res) => {
     console.log("Request to /tasks is received");
