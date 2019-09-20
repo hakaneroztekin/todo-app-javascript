@@ -97,6 +97,8 @@ api.post('/add', (req, res) => {
 
 // get items
 api.get('/tasks', (req, res) => {
+    console.log("Request to /tasks is received");
+
     let queryString = "SELECT * FROM tasks ORDER BY creation_date DESC";
     connection.query(queryString, (error, results) => {
         if (error) return console.log("Error happened in query " + error);
@@ -105,6 +107,17 @@ api.get('/tasks', (req, res) => {
             todo: results.filter((task) => !task.completed),
             completed: results.filter((task) => task.completed)
         });
-        res.send();
+    });
+});
+
+// delete item
+api.delete('/remove', (req, res) => {
+    console.log("Request to /remove is received");
+    console.log(req.body);
+
+    let queryString = "DELETE FROM tasks WHERE id = " + req.body.id;
+
+    connection.query(queryString, (error) => {
+        if (error) return console.log("Error happened in query " + error);
     });
 });

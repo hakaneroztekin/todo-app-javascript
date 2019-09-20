@@ -45,9 +45,9 @@ function dataObjectUpdated() {
 function removeItem() {
     let listItem = this.parentNode.parentNode; // "listItem" is the parent of "buttons", which is the parent of "remove" button
     let list = listItem.parentNode; // to do list
-    // todo refactor to API (change item states)
+    let listItemId = parseInt(listItem.getAttribute("id"));
     list.removeChild(listItem);
-    dataObjectUpdated();
+    deleteItem(listItemId);
 }
 
 // complete item
@@ -79,7 +79,7 @@ function addItemToDOM(task, listName) {
     // <li>
     let listItem = document.createElement('li');
     listItem.textContent = task.description;
-    listItem.setAttribute('data-id', task.id);
+    listItem.setAttribute('id', task.id);
 
     // <div class="buttons">
     let buttons = document.createElement('div');
@@ -109,21 +109,28 @@ function addItemToDOM(task, listName) {
     dataObjectUpdated();
 }
 
-// Method for sending to-do item to API
+// POST Method for sending to-do item to API
 function sendItemToAPI(value, callback) {
     executeHTTPRequest(value, 'POST', '/add', callback);
 }
 
-// Get all items from API
+// GET Method all items from API
 function getAllTasks(callback) {
     executeHTTPRequest(null, 'GET', '/tasks', callback);
+}
+
+// DELETE Method to delete selected item
+function deleteItem(id) {
+    executeHTTPRequest(id, 'DELETE', '/remove')
 }
 
 function executeHTTPRequest(value, request, endpoint, callback) {
     if (request === 'GET') {
         get(endpoint, callback);
     } else if (request === 'POST') {
-        post(endpoint, callback);
+        post(value, endpoint, callback);
+    } else if (request === 'DELETE') {
+        deleteRequest(value, endpoint);
     }
 }
 
@@ -177,3 +184,23 @@ function post(value, endpoint, callback) {
     });
 }
 
+function deleteRequest(id, endpoint) {
+    console.log("Delete");
+    console.log(id);
+    let request = new XMLHttpRequest();
+    let idJSON = JSON.stringify({id: id});
+
+    // Configure the request: DELETE method to the endpoint
+    request.open('DELETE', endpoint);
+
+    // Let API know it's JSON data
+    request.setRequestHeader('Content-Type', 'application/json');
+
+    // Send the request
+    request.send(idJSON);
+
+    request.addEventListener('error', (e) => {
+        console.log('Error occurred.');
+        console.log(e);
+    });
+}
