@@ -106,5 +106,6 @@ api.get('/tasks', (req, res) => {
             todo: results.filter((task) => !task.completed),
             completed: results.filter((task) => task.completed)
         });
+        res.send();
     });
 });
