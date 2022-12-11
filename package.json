@@ -20,7 +20,7 @@
   "homepage": "https://github.com/hakaneroztekin/todo-app-javascript#readme",
   "dependencies": {
     "body-parser": "latest",
-    "express": "^4.17.1",
+    "express": "^4.17.3",
     "mysql2": "^1.7.0"
   },
   "devDependencies": {
